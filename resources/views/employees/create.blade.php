@@ -16,7 +16,8 @@ kittAy - Create Employee
 				echo '</ul></div>';
 			};
 			?>
-			{!! Form::open(array('class' => 'form-inline newemp', 'style' => 'display:table;')) !!}
+	
+			{!! Form::open(array('url' => 'employees', 'class' => 'form-inline newemp', 'style' => 'display:table;')) !!}
 			
 				<label style="width:100px;">Full Name:</label> <input style="height:40px;margin:10px;" type="text" name="first_name" placeholder="First">
 				<input style="height:40px;" type="text" name="last_name"  placeholder="Last"><br />

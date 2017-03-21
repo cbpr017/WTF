@@ -38,12 +38,9 @@ kittAy - Employee List
 					@if(isset($employee->release_date))
 						@continue
 					@else
-				
-					
-			
+
 					<tr>
-						<td>{{ $employee->first_name . ' ' . 
-					$employee->last_name }}</td>
+						<td>{{ $employee->first_name . ' ' . $employee->last_name }}</td>
 						<td>{{ $employee->position }}</td>
 						<td>{{ '$' . number_format($employee->salary, 2) }}</td>
 						<td>{{ $employee->hire_date }}</td>
