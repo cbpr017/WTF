@@ -1,0 +1,73 @@
+
+nav {
+	padding-bottom:25px;
+}
+
+nav ul {
+    list-style-type: none;
+	width:100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+nav li {
+    float: left;
+	border-right: 1px solid #bbb;
+}
+
+nav li:last-child {
+    border-right: none;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+nav li a:hover {
+    background-color: #111;
+}
+
+
+.heady {
+		align:center;
+		background-color:#556490;
+		text-align:center;
+		width:95%;
+		padding:15px;
+		margin-left:auto;
+		margin-right:auto;
+		color:white;
+		border-radius:5px;
+}
+
+.head-title {
+	font-size:1.8em;
+	/* padding:15px; */
+}
+
+.head-subtitle {
+	font-size:1.2em;
+	/* padding:5px; */
+}
+
+.titles {
+	font-size:1.5em;
+	font-weight:bold;
+	/* width:95%; */
+	/* background-color:#556490; */
+	/* color:white; */
+	/* margin-left:1%; */
+	/* padding:2px; */
+	/* border-radius:5px; */
+}
+
+table td {
+	border:none;
+}
