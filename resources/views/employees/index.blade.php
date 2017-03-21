@@ -4,7 +4,7 @@
 kittAy - Employee List
 @stop
 @section('content')
-<!-- random comment -->
+
 <div class="container">
 
 <div style="float:left;">
