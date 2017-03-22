@@ -14,15 +14,24 @@
 	{!! Html::style('css/bootstrap.css') !!}
 	{!! Html::style('css/bootstrap-responsive.min.css') !!}
 	{!! Html::style('css/app.css') !!}
+	{!! Html::style('css/jquery-ui.theme.min.css') !!}
+	{!! Html::style('css/jquery-ui.structure.min.css') !!}
+	{!! Html::style('css/jquery-ui.min.css') !!}
     <!-- Scripts -->
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+	{{ HTML::script('js/jquery-3.2.0.js') }}
+	{{ HTML::script('js/jquery-ui.min.js') }}
+	{{ HTML::script('js/bootstrap.min.js') }}
+
+	<script>
+		$( function() {
+			$( "#datepicker" ).datepicker();
+		} );
+	</script>
+	
 	<script>
 			// Change employee view from current and released
 			$(document).ready(function(){
+				
 				$('.release').click(function() {
 					$('.tablecurrent').hide();
 					$('.tablerelease').show();
@@ -34,22 +43,6 @@
 					$('.tablecurrent').show();
 					$('.current').css('font-weight', 'bold');
 					$('.release').css('font-weight', 'normal');
-				});
-			// Add New Employee Button
-				$('.addnew').click(function(){
-					$('.tablerelease').hide();
-					$('.tablecurrent').hide();
-					$('.newemployee').show();
-					$('.statusview').hide();
-					$('.addnew').hide();
-					$('.views').hide();
-				});
-				$('.addcancel').click(function(){
-					$('.newemployee').hide();
-					$('.tablecurrent').show();
-					$('.statusview').show();
-					$('.views').show();
-					$('.addnew').show();
 				});
 				
 				//Color Inverting Script
@@ -81,11 +74,7 @@
 					});	
 				});
 				
-				
-			//Date Picker
-			$( "#datepicker" ).datepicker();
 			});
-			
 			
 	</script>
 	
