@@ -5,8 +5,6 @@ kittAy - Employee Edit
 @stop
 @section('content')
 
-<?php $workers = DB::table('employees')->get();
-?>
 <div class="container">
 	
 	<div class="newemployee">
@@ -18,20 +16,24 @@ kittAy - Employee Edit
 					echo "<li>$error</li>";
 				};
 				echo '</ul></div>';
-			}
+			};
 			?>
-			{!! Form::model($employees,[employees.store, $employees->id] !!}
+			<?php $edit = true; ?>
+			{!! Form::model($employees, [
+					'method' => 'PATCH', 
+					'route' => ['employees.update', $employees->id]]) 
+			!!}
 			
-				<label style="width:100px;">Full Name:</label> <input style="height:40px;margin:10px;" type="text" name="first_name" value="<?php echo $employees->first_name; ?>">
-				<input style="height:40px;" type="text" name="last_name"  value="<?php echo $employees->last_name; ?>"><br />
-				<label style="width:100px;">Position:</label> <input style="height:40px;margin:10px;" type="text" name="position"  value="<?php echo $employees->position; ?>"><br />
-				<label style="width:100px;">Salary:</label> <input style="height:40px;margin:10px;" type="number" min="1" step="any" name="salary"  value="<?php echo $employees->salary; ?>"><br />
-				<label style="width:100px;">Hire Date:</label><input style="height:40px;margin:10px;" type="date" name="hire_date" value="<?php echo $employees->hire_date; ?>"><br />
-				<!-- <input style="height:40px;" type="file" name="attachment"> -->
+				<label style="width:100px;">Full Name:</label> <input style="height:40px;margin:10px;" type="text" name="first_name" value="{{ $employees->first_name }}">
+				<input style="height:40px;" type="text" name="last_name"  value="{{ $employees->last_name }}"><br />
+				<label style="width:100px;">Position:</label> <input style="height:40px;margin:10px;" type="text" name="position"  value="{{ $employees->position }}"><br />
+				<label style="width:100px;">Salary:</label> <input style="height:40px;margin:10px;" type="number" min="1" step="any" name="salary"  value="{{ $employees->salary }}"><br />
+				<label style="width:100px;">Hire Date:</label><input style="height:40px;margin:10px;" type="date" name="hire_date" value="{{ $employees->hire_date }}"><br />
 				
 				<button type="submit" class="btn btn-large btn-primary">Submit</button>
+				<a href="{{ URL::to('employees') }}"><button type="button" class="btn btn-large btn-primary" style="margin-left:10px;">Cancel</button></a>
 			{!! Form::close() !!}
 				
 	</div>
 </div>
-@stop
+@endsection

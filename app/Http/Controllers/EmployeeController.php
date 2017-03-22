@@ -67,7 +67,7 @@ class EmployeeController extends Controller
 		//And then redirect back to the Employees page
 		
 		//return redirect('/employees.index');
-		return View::make('employees.index')->with('employees', $employees);
+		return redirect()->route('employees.index');
     }
 
     /**
@@ -79,7 +79,6 @@ class EmployeeController extends Controller
     public function show($id)
     {
         //
-
     }
 
     /**
@@ -104,11 +103,17 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       //
+	   
 	$employee = Employee::findOrFail($id);
-    $employee->release_date = date('Y-m-d H:i:s');
+		$employee->first_name = request('first_name');
+		$employee->last_name = request('last_name');
+		$employee->position = request('position');
+		$employee->salary = request('salary');
+		$employee->hire_date = request('hire_date');
+	
     $employee->update();
-    return redirect()->back()->with('message', 'Employee updated!');
+    return redirect('employees')->with('message', 'Employee updated!');
     }
 
     /**

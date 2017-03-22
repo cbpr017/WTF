@@ -27,43 +27,48 @@ kittAy - Employee List
 				</tr>
 			</thead>
 			<tbody>
-
-				@foreach($employees as $employee)
-				
-					@if(empty(DB::select( DB::raw("SELECT * FROM employees WHERE release_date IS NULL"))))
+				@if ($employees->isEmpty())
 						<tr><td  style="text-align:center;font-style:italic;" colspan="5">No Records Found</td></tr>
-						@break
-					@endif
-				
-					@if(isset($employee->release_date))
-						@continue
-					@else
+				@else
+					@foreach($employees as $employee)
+					
+						@if(empty(DB::select( DB::raw("SELECT * FROM employees WHERE release_date IS NULL"))))
+							<tr><td  style="text-align:center;font-style:italic;" colspan="5">No Records Found</td></tr>
+							@break
+						@endif
+					
+						@if(isset($employee->release_date))
+							@continue
+						@else
 
-					<tr>
-						<td>{{ $employee->first_name . ' ' . $employee->last_name }}</td>
-						<td>{{ $employee->position }}</td>
-						<td>{{ '$' . number_format($employee->salary, 2) }}</td>
-						<td>{{ $employee->hire_date }}</td>
+						<tr>
 						
-						<td>
+							<td>{{ $employee->first_name . ' ' . $employee->last_name }}</td>
+								
+							<td>{{ $employee->position }}</td>
+							<td>{{ '$' . number_format($employee->salary, 2) }}</td>
+							<td>{{ $employee->hire_date }}</td>
 							
-							{!! Form::model($employee, [
-								'method' => 'PATCH', 
-								'route' => ['employees.update', $employee->id]]) 
-							!!}
-							
-								<button type="submit" class="btn btn-warning" style="font-size:.8em;">Release Employee </button>
-							{!! Form::close() !!}
-								<a href="{{ route('employees.edit', $employee->id) }}">Edit Employee</a>
-							
-							
-						</td>
-					</tr>
-					@endif
-				@endforeach
+							<td>
+								
+								{!! Form::model($employee, [
+									'method' => 'PATCH', 
+									'route' => ['relemployees.update', $employee->id]]) 
+								!!}
+								
+									<button type="submit" class="btn btn-warning" style="font-size:.8em;">Release Employee </button>
+								{!! Form::close() !!}
+									<a href="{{ route('employees.edit', $employee->id) }}">Edit Employee</a>
+								
+								
+							</td>
+						</tr>
+						@endif
+					@endforeach
+				@endif
 			</tbody>
 		</table>
-	
+
 	
 
 			<table style="display:none;" class="table table-bordered table-striped tablerelease">
@@ -78,7 +83,9 @@ kittAy - Employee List
 				</tr>
 			</thead>
 <tbody>
-			
+			@if ($employees->isEmpty())
+			<tr><td  style="text-align:center;font-style:italic;" colspan="5">No Records Found</td></tr>
+			@else
 				@foreach($employees as $employee)
 					@if(empty(DB::select( DB::raw("SELECT * FROM employees WHERE release_date IS NOT NULL"))))
 						<tr><td  style="text-align:center;font-style:italic;" colspan="5">No Records Found</td></tr>
@@ -94,13 +101,14 @@ kittAy - Employee List
 							$employee->last_name }}</td>
 						<td>{{ $employee->position }}</td>
 						<td>{{ '$' . number_format($employee->salary, 2) }}</td>
-						<td>Hired: {{ $employee->hire_date }}</td>
-						<td>Released: {{ $employee->release_date }}</td>
+						<td>{{ $employee->hire_date }}</td>
+						<td>{{ $employee->release_date }}</td>
 						
 
 					</tr>
 					@endif
 				@endforeach
+			@endif
 			</tbody>
 		</table>
 	

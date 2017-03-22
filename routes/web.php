@@ -36,6 +36,7 @@ Route::get('restful', function () {
 });
 
 Route::resource('employees', 'EmployeeController');
+Route::resource('relemployees', 'ReleaseEmployee');
 
 Route::resource('account', 'UserController');
 
